@@ -6,6 +6,7 @@ from datetime import datetime
 from typing import Optional, List
 import uuid
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
@@ -16,6 +17,14 @@ app = FastAPI(
     title="Coordinates API",
     description="API for managing geographic coordinates with MongoDB Atlas",
     version="1.0.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # MongoDB connection
